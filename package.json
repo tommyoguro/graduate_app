@@ -20,4 +20,10 @@
   "browserslist": [
     "defaults"
   ]
+ #ここから
+  "engines": {
+    "node": "18.19.1"
+  },
+  #ここまで
+
 }
