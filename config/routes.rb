@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
-   root 'tasks#index' #追記
+
+  devise_scope :user do
+    root to: "devise/sessions#new" # ログインページをトップページに
+  end
+
+ #devise_for :users
+   #root 'tasks#index' #追記
   resources :tasks
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
