@@ -59,3 +59,4 @@ group :test do
   gem "selenium-webdriver"
 end
 gem 'bundler'
+gem 'devise'
