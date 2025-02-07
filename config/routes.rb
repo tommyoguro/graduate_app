@@ -43,4 +43,15 @@ Rails.application.routes.draw do
   # 🔹 各機能のページ
   get '/buyer_requests', to: 'buyer_requests#index', as: 'buyer_requests'
   get '/seller_offers', to: 'seller_offers#index', as: 'seller_offers'
+
+   resources :buyer_requests, only: [:new, :create, :show] do
+     member do
+       get :confirm
+     end
+   end
+
+   # 他のルート
+   get 'seller_offers/index'
+   get 'buyer_requests/index'
+   get 'menu/index'
 end

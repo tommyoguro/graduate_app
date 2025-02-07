@@ -1,0 +1,24 @@
+<%= form_with model: @buyer_request, url: buyer_requests_path, local: true do |f| %>
+    <div class="mb-3">
+      <%= f.label :product_name, "商品名" %>
+      <%= f.text_field :product_name, class: "form-control", required: true %>
+    </div>
+  
+    <div class="mb-3">
+      <%= f.label :quantity, "数量" %>
+      <%= f.number_field :quantity, class: "form-control", required: true %>
+    </div>
+  
+    <div class="mb-3">
+      <%= f.label :delivery_address, "納入先" %>
+      <%= f.text_field :delivery_address, class: "form-control", required: true %>
+    </div>
+  
+    <div class="mb-3">
+      <%= f.label :delivery_date, "希望納期" %>
+      <%= f.date_field :delivery_date, class: "form-control", required: true %>
+    </div>
+  
+    <%= f.submit "送信", class: "btn btn-primary" %>
+  <% end %>
+  

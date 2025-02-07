@@ -15,4 +15,9 @@ class ApplicationController < ActionController::Base
   def set_devise_mapping
     request.env["devise.mapping"] = Devise.mappings[:user]
   end
+
+  # 🔹 ログイン後の遷移先をメニュー画面に設定
+  def after_sign_in_path_for(resource)
+    menu_path # メニュー画面へリダイレクト
+  end
 end
