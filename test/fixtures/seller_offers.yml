@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  buyer_request: one
+  price: 1
+  delivery_date: 2025-02-08
+
+two:
+  buyer_request: two
+  price: 1
+  delivery_date: 2025-02-08

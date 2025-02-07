@@ -1,30 +1,99 @@
-<h1>Menu#index</h1>
-<p>Find me in app/views/menu/index.html.erb</p>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>メニュー</title>
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 120px;
+        }
+        .menu-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        .menu-items {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+        .menu-item {
+            background-color: #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            width: 250px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #dee2e6;
+        }
+        .menu-item img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .menu-item h3 {
+            font-size: 18px;
+            margin-top: 15px;
+        }
+        .btn-primary {
+            margin-top: 10px;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
 
-<div class="container mt-5">
-  <div class="text-center">
-    <h1 class="mb-4">メニュー</h1>
-    
-    <div class="row">
-      <div class="col-md-6">
-        <div class="card shadow-lg">
-          <div class="card-body text-center">
-            <img src="/assets/buyer.png" alt="Buyer" class="img-fluid mb-3">
-            <h3>見積依頼 (For Buyer)</h3>
-            <%= link_to "見積依頼へ進む", buyer_requests_path, class: "btn btn-primary mt-2" %>
-          </div>
-        </div>
-      </div>
+    <%= image_tag("nissan_logo.png", alt: "会社ロゴ", class: "logo") %>
 
-      <div class="col-md-6">
-        <div class="card shadow-lg">
-          <div class="card-body text-center">
-            <img src="/assets/seller.png" alt="Seller" class="img-fluid mb-3">
-            <h3>見積回答 (オファー) (For Seller)</h3>
-            <%= link_to "見積回答へ進む", seller_offers_path, class: "btn btn-secondary mt-2" %>
-          </div>
+    <div class="container">
+    <h1 class="text-center fw-bold">日産トレーディング株式会社</h1>
+    <h1 class="text-center">化学品・エネルギーグループ<br>B to B Matching サイト</h1>
+    <h2 class="text-center small">このサイトはグローバル B to B ビジネスに特化した売り手と買い手を繋ぐマッチングサービスです。</p>    
+    <h1 class="text-center fw-bold">B-TRADE MENU</h2>
+
+        <div class="menu-items">
+            <div class="menu-item">
+                <%= image_tag("for_buyer.jpg", alt: "見積依頼", class: "img-fluid") %>
+                <h3>見積依頼 (For Buyer)</h3>
+                <%= link_to "見積依頼へ進む", new_buyer_request_path, class: "btn btn-primary" %>
+            </div>
+
+            <div class="menu-item">
+                <%= image_tag("for_seller.png", alt: "見積回答", class: "img-fluid") %>
+                <h3>見積回答 (オファー) (For Seller)</h3>
+                <%= link_to "見積回答へ進む", seller_offers_path, class: "btn btn-primary" %>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
+
+    <div class="footer">
+        <p>サイトマップ | ご利用にあたって | 個人情報保護方針 | &copy;2022 NISSAN</p>
+    </div>
+
+</body>
+</html>
+

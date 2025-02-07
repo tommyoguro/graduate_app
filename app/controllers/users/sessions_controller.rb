@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
+  protected 
+
+   #ログアウト後はログイン画面 (`users/sessions/new.html.erb`) に遷移
+   def after_sign_out_path_for(resource_or_scope)
+    new_user_session_path
+  end
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
