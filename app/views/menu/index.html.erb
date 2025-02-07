@@ -1,0 +1,30 @@
+<h1>Menu#index</h1>
+<p>Find me in app/views/menu/index.html.erb</p>
+
+<div class="container mt-5">
+  <div class="text-center">
+    <h1 class="mb-4">メニュー</h1>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card shadow-lg">
+          <div class="card-body text-center">
+            <img src="/assets/buyer.png" alt="Buyer" class="img-fluid mb-3">
+            <h3>見積依頼 (For Buyer)</h3>
+            <%= link_to "見積依頼へ進む", buyer_requests_path, class: "btn btn-primary mt-2" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card shadow-lg">
+          <div class="card-body text-center">
+            <img src="/assets/seller.png" alt="Seller" class="img-fluid mb-3">
+            <h3>見積回答 (オファー) (For Seller)</h3>
+            <%= link_to "見積回答へ進む", seller_offers_path, class: "btn btn-secondary mt-2" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
