@@ -15,8 +15,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_04_143109) do
   enable_extension "plpgsql"
 
   create_table "tasks", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
+    t.string "title", default: "", null: false
+    t.text "content", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -29,13 +29,12 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_04_143109) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name", null: false
-    t.string "name_kana", null: false
-    t.string "password_digest", null: false
-    t.string "company_name", null: false
-    t.string "division_name", null: false
+    t.string "name", default: "", null: false
+    t.string "name_kana", default: "", null: false
+    t.string "company_name", default: "", null: false
+    t.string "division_name", default: "", null: false
     t.boolean "is_deleted", default: false, null: false
-    t.boolean "admin", default: false, null: false
+    t.boolean "is_admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
