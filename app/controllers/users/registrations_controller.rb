@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  before_action :configure_sign_up_params, only: [:create]
+
+  #登録完了画面用のアクション
   def complete #追加
   end #追加  
+
   protected 
 
   # 新規登録後の遷移先を変更
   def after_sign_up_path_for(resource)
-    dashboard_path # ダッシュボード画面にリダイレクト（適宜変更）
+    registration_complete_path # ダッシュボード画面にリダイレクト（適宜変更）
   end
 
   # アカウント更新後の遷移先を変更
@@ -17,11 +21,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
    # ユーザー登録後のリダイレクト先を変更追加
    def after_sign_up_path_for(resource)
-    registration_complete_path # 🎯 登録完了画面へ
+    registration_complete_path # 登録完了画面へ
   end
 
   def after_inactive_sign_up_path_for(resource)
-    registration_complete_path # 🎯 登録が未アクティブな場合も同じ
+    registration_complete_path # 登録が未アクティブな場合も同じ
+  end
+
+  private
+
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :name_kana, :company_name, :division_name])
   end
 end
 
