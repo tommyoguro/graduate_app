@@ -9,19 +9,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected 
 
-  # 新規登録後の遷移先を変更
+  # ユーザー登録後のリダイレクト先を変更
   def after_sign_up_path_for(resource)
     registration_complete_path # ダッシュボード画面にリダイレクト（適宜変更）
   end
 
   # アカウント更新後の遷移先を変更
   def after_update_path_for(resource)
-    user_profile_path(resource) # プロフィール画面へリダイレクト（適宜変更）
-  end
-
-   # ユーザー登録後のリダイレクト先を変更追加
-   def after_sign_up_path_for(resource)
-    registration_complete_path # 登録完了画面へ
+    user_profile_path(resource) # ユーザー登録完了ページへリダイレクト
   end
 
   def after_inactive_sign_up_path_for(resource)

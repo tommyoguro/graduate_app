@@ -1,9 +1,15 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
-
+  
   # Deviseのマッピングを正しく認識するために追加
   before_action :set_devise_mapping
+
+  protect_from_forgery with: :exception
+  # Deviseのログアウト後のリダイレクト先を変更
+  def after_sign_out_path_for(resource_or_scope)
+   new_user_session_path # ログアウト後にログインページへ遷移
+  end
 
   protected
 

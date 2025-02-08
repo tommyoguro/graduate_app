@@ -11,12 +11,20 @@ class SellerOffersController < ApplicationController
   end
 
   def create
-    @seller_offer = SellerOffer.new(seller_offer_params)
+    @buyer_request = BuyerRequest.find(params[:buyer_request_id])
+    @seller_offer = @buyer_request.seller_offers.build(seller_offer_params)
+  
     if @seller_offer.save
-      redirect_to seller_offers_path, notice: "見積回答を送信しました。"
+      # 成功した場合は見積回答番号を表示する画面にリダイレクト
+      redirect_to seller_offer_complete_path(@seller_offer), notice: '見積回答が送信されました。'
     else
+      # 失敗した場合は再度入力画面を表示
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def complete
+    @seller_offer = SellerOffer.find(params[:id])
   end
 
   private
