@@ -30,6 +30,11 @@
     </div>
   </div>
 
+  <div class="d-grid gap-2 mt-3">
+  <%= button_to "ゲストログイン（一般）", users_guest_sign_in_path, method: :post, class: "btn btn-secondary w-100" %>
+  <%= button_to "ゲストログイン（管理者）", users_admin_guest_sign_in_path, method: :post, class: "btn btn-danger w-100" %>
+  </div>
+
   <!-- フッター -->
   <footer class="mt-4 text-center text-muted small">
     <div class="d-flex justify-content-center">
