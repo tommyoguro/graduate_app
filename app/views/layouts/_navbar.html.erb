@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+  <%= link_to "アプリ名", user_signed_in? ? authenticated_root_path : unauthenticated_root_path, class: "navbar-brand" %>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <% if user_signed_in? %>
+          <% if current_user.admin? %>
+            <li class="nav-item">
+              <%= link_to "管理者ページ", admin_users_path, class: "nav-link text-danger" %>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <%= link_to "マイページ", user_profile_path(current_user), class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ダッシュボード", dashboard_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-secondary" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= button_to "ゲストログイン（一般）", users_guest_sign_in_path, method: :post, class: "btn btn-outline-secondary btn-sm" %>
+          </li>
+          <li class="nav-item">
+            <%= button_to "ゲストログイン（管理者）", users_admin_guest_sign_in_path, method: :post, class: "btn btn-outline-danger btn-sm" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
