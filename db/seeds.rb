@@ -14,46 +14,54 @@
     user.password = "password"
     user.password_confirmation = "password"
   end
-  
+
   # ユーザーのシードデータ
-  User.create!([
-   { name: "山田 太郎", email: "taro@example.com", password: "password", admin: false },
-   { name: "鈴木 健太", email: "kenta@example.com", password: "password", admin: false },
-   { name: "佐藤 花子", email: "hanako@example.com", password: "password", admin: false },
-   { name: "田中 健", email: "ken@example.com", password: "password", admin: false },
-   { name: "管理者", email: "admin@example.com", password: "adminpassword", admin: true }
-  ])
+User.create!(
+  [
+    { email: "user11@example.com", password: "password", name: "田中 太郎", name_kana: "タナカ タロウ", company_name: "ABC商事", division_name: "営業部", is_deleted: false, is_admin: false },
+    { email: "user12@example.com", password: "password", name: "鈴木 花子", name_kana: "スズキ ハナコ", company_name: "XYZ株式会社", division_name: "マーケティング部", is_deleted: false, is_admin: false },
+    { email: "user13@example.com", password: "password", name: "佐藤 次郎", name_kana: "サトウ ジロウ", company_name: "DEF工業", division_name: "技術部", is_deleted: false, is_admin: false },
+    { email: "admin1@example.com", password: "password", name: "管理者1", name_kana: "カンリシャイチ", company_name: "管理会社1", division_name: "システム管理部", is_deleted: false, is_admin: true },
+    { email: "guest1@example.com", password: "password", name: "ゲストユーザー1", name_kana: "ゲストイチ", company_name: "ゲスト会社1", division_name: "ゲスト部", is_deleted: false, is_admin: false }
+  ]
+)
 
-# バイヤーリクエストのシードデータ
-  BuyerRequest.create!([
-   { product_name: "化学品A", quantity: 100, delivery_address: "東京", delivery_date: "2025-02-10" },
-   { product_name: "化学品B", quantity: 50, delivery_address: "大阪", delivery_date: "2025-02-15" },
-   { product_name: "化学品C", quantity: 200, delivery_address: "名古屋", delivery_date: "2025-02-20" },
-   { product_name: "化学品D", quantity: 150, delivery_address: "福岡", delivery_date: "2025-02-25" },
-   { product_name: "化学品E", quantity: 80, delivery_address: "札幌", delivery_date: "2025-02-28" }
- ])
+# 見積依頼（BuyerRequest）のシードデータ
+buyer_requests = BuyerRequest.create!(
+  [
+    { product_name: "ノートPC", quantity: 10, delivery_address: "東京都渋谷区1-1-1", delivery_date: Date.today + 10 },
+    { product_name: "プリンター", quantity: 5, delivery_address: "大阪府大阪市2-2-2", delivery_date: Date.today + 15 },
+    { product_name: "モニター", quantity: 8, delivery_address: "愛知県名古屋市3-3-3", delivery_date: Date.today + 12 },
+    { product_name: "キーボード", quantity: 20, delivery_address: "北海道札幌市4-4-4", delivery_date: Date.today + 8 },
+    { product_name: "マウス", quantity: 15, delivery_address: "福岡県福岡市5-5-5", delivery_date: Date.today + 14 }
+  ]
+)
 
+# 売り手オファー（SellerOffer）のシードデータ
+SellerOffer.create!(
+  [
+    { buyer_request_id: buyer_requests[0].id, price: 100000, delivery_date: Date.today + 9 },
+    { buyer_request_id: buyer_requests[1].id, price: 50000, delivery_date: Date.today + 14 },
+    { buyer_request_id: buyer_requests[2].id, price: 75000, delivery_date: Date.today + 11 },
+    { buyer_request_id: buyer_requests[3].id, price: 30000, delivery_date: Date.today + 7 },
+    { buyer_request_id: buyer_requests[4].id, price: 20000, delivery_date: Date.today + 13 }
+  ]
+)
 
-# セラーオファーのシードデータ
-  SellerOffer.create!([
-   { buyer_request_id: 1, user_id: 3, price: 50000, description: "化学品Aをお届け可能です。" },
-   { buyer_request_id: 2, user_id: 4, price: 30000, description: "化学品Bの価格を提案します。" },
-   { buyer_request_id: 3, user_id: 5, price: 80000, description: "化学品Cの在庫があります。" },
-   { buyer_request_id: 4, user_id: 1, price: 15000, description: "化学品Dの見積をお送りします。" },
-   { buyer_request_id: 5, user_id: 2, price: 60000, description: "化学品Eの特価オファーです。" }
-  ])
+# タスク（Tasks）のシードデータ
+Task.create!(
+  [
+    { title: "企画書作成", content: "新規プロジェクトの企画書を作成する" },
+    { title: "営業資料作成", content: "営業部向けの提案資料を準備する" },
+    { title: "製品デモ準備", content: "顧客向けの製品デモの準備を行う" },
+    { title: "予算計画作成", content: "来期の予算計画を策定する" },
+    { title: "開発スケジュール作成", content: "システム開発のスケジュールを作成する" }
+  ]
+)
 
-# タスクのシードデータ
-  Task.create!([
-   { user_id: 1, title: "見積依頼の確認", status: "未完了" },
-   { user_id: 2, title: "契約書の準備", status: "進行中" },
-   { user_id: 3, title: "サプライヤーとの交渉", status: "完了" },
-   { user_id: 4, title: "価格交渉", status: "未完了" },
-   { user_id: 5, title: "納期調整", status: "進行中" }
-  ])
+puts "シードデータの作成が完了しました！"
 
-  puts "Seedデータの作成が完了しました！"
-
+  
 
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.

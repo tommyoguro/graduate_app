@@ -1,16 +1,14 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
-
 <h2>ユーザー管理</h2>
 
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>ID</th>
       <th>名前</th>
-      <th>メールアドレス</th>
+      <th>Email</th>
       <th>管理者</th>
       <th>編集</th>
+      <th>削除</th>
     </tr>
   </thead>
   <tbody>
@@ -19,9 +17,19 @@
         <td><%= user.id %></td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= user.admin? ? "✅" : "❌" %></td>
-        <td><%= link_to "編集", edit_admin_user_path(user), class: "btn btn-primary btn-sm" %></td>
+        <td><%= user.is_admin? ? "✅" : "❌" %></td>
+        <td>
+          <%= link_to "編集", edit_admin_user_path(user), class: "btn btn-primary btn-sm" %>
+        </td>
+        <td>
+          <% if user != current_user %>
+            <%= link_to "削除", admin_user_path(user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to "ダッシュボードに戻る", dashboard_path, class: "btn btn-secondary mt-3" %>
+

@@ -1,31 +1,38 @@
-class Admin::UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :require_admin
-  
+class Admin::UsersController < Admin::BaseController
+  before_action :set_user, only: [:edit, :update, :destroy]
+
   def index
-    @users = User.all
+    @users = User.all.order(:id)
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to admin_users_path, notice: "ユーザー情報を更新しました"
+      redirect_to admin_users_path, notice: "ユーザー情報を更新しました。"
     else
-      render :edit
+      render :edit, alert: "更新に失敗しました。"
+    end
   end
-end
 
-private
+  def destroy
+    if @user != current_user
+      @user.destroy
+      redirect_to admin_users_path, notice: "ユーザーを削除しました。"
+    else
+      redirect_to admin_users_path, alert: "自分自身を削除することはできません。"
+    end
+  end
 
-  def require_admin
-    redirect_to root_path, alert: "管理者のみアクセスできます" unless current_user.admin?
+  private
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :admin)
+    params.require(:user).permit(:name, :email, :is_admin)
   end
 end
+
