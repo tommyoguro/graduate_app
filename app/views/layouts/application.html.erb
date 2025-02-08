@@ -8,49 +8,34 @@
     <%= csp_meta_tag %>
 
     <%= yield :head %>
-
+  
+    <!-- CSS & JS の読み込み -->
+    <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
-   <%= render "layouts/navbar" %>
-   <div class="container mt-4">
-     <%= yield %>
-   </div>
+    <!-- ✅ ナビゲーションバーの読み込み -->
+    <%= render "layouts/navbar" %>
 
-  <% if user_signed_in? %>
-  <% if current_user.admin? %>
-    <%= link_to "管理者ページ", admin_users_path, class: "btn btn-danger" %>
-  <% else %>
-    <%= link_to "マイページ", user_profile_path(current_user), class: "btn btn-primary" %>
-  <% end %>
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
-  <% end %>
-
-    <header class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="/">B-TRADE</a>
-
-        <div class="collapse navbar-collapse">
-          <ul class="navbar-nav ms-auto">
-            <% if user_signed_in? %>
-              <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </header>
-
+    <!-- ✅ メインコンテンツ -->
     <main class="container mt-4">
-      <%= yield %>
+      <%= yield %> <!-- 各ビューのコンテンツがここに挿入される -->
     </main>
+
+    <!-- ✅ フッター -->
+    <footer class="mt-5 text-center bg-dark text-white py-3">
+      <div class="container">
+        <div class="d-flex justify-content-center">
+          <p class="mb-0">
+            <a href="#">サイトマップ</a> | 
+            <a href="#">ご利用にあたって</a> | 
+            <a href="#">個人情報保護方針</a>
+          </p>
+        </div>
+        <p class="mb-0">©2022 NISSAN</p>
+      </div>
+    </footer>
   </body>
-</html>
+  </html>
+  
