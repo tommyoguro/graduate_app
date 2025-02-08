@@ -68,10 +68,13 @@ Rails.application.routes.draw do
   # 404 & 500 エラーページ
   match "/404", to: "errors#not_found", via: :all
   match "/500", to: "errors#internal_server_error", via: :all
+ 
+  # **キャッチオールルートを追加**
+  match "*path", to: "errors#not_found", via: :all
 
   # ゲストログイン機能
   devise_scope :user do
-    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
-    post 'users/admin_guest_sign_in', to: 'users/sessions#admin_guest_sign_in'
+   post '/users/guest_sign_in', to: 'users/sessions#guest_sign_in', as: :guest_sign_in
+   post '/users/admin_guest_sign_in', to: 'users/sessions#admin_guest_sign_in', as: :admin_guest_sign_in
    end
   end

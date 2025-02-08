@@ -3,6 +3,10 @@
     <div class="card-header bg-dark text-white text-center">
       <h2>ユーザー登録</h2>
     </div>
+
+    <!-- 🔹 追加: エラーメッセージを表示 -->
+    <%= render "shared/error_messages", resource: resource %>
+
     <div class="card-body">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "needs-validation" }, data: { turbo: false }) do |f| %>
         

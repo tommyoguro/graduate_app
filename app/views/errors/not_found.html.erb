@@ -1,6 +1,16 @@
-<h1>Errors#not_found</h1>
-<p>Find me in app/views/errors/not_found.html.erb</p>
-
-<h1>404 - ページが見つかりません</h1>
-<p>申し訳ありません。お探しのページは見つかりませんでした。</p>
-<%= link_to "ホームへ戻る", root_path, class: "btn btn-primary" %>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <link rel="stylesheet" href="<%= asset_path('application.css') %>">
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <h1 class="text-danger">404 - ページが見つかりません</h1>
+        <p>申し訳ありませんが、お探しのページは存在しません。</p>
+        <%= link_to "ホームへ戻る", root_path, class: "btn btn-primary" %>
+    </div>
+</body>
+</html>

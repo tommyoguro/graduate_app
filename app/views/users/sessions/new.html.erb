@@ -25,17 +25,19 @@
       </div>
     <% end %>
 
+    <!-- 🔹 追加: エラーメッセージを表示 -->
+    <%= render "shared/error_messages", resource: resource %>
+
     <div class="text-center mt-3">
       <%= link_to "新規登録の方はこちら", new_user_registration_path, class: "text-decoration-none" %>
     </div>
   </div>
 
-  <div class="d-grid gap-2 mt-3">
-  <%= button_to "ゲストログイン（一般）", users_guest_sign_in_path, method: :post, class: "btn btn-secondary w-100" %>
-  <%= button_to "ゲストログイン（管理者）", users_admin_guest_sign_in_path, method: :post, class: "btn btn-danger w-100" %>
-  </div>
-
   <!-- フッター -->
+  <div class="d-grid gap-2 mt-3">
+  <%= button_to "ゲストログイン（一般）", guest_sign_in_path, method: :post, class: "btn btn-secondary w-100" %>
+  <%= button_to "ゲストログイン（管理者）", admin_guest_sign_in_path, method: :post, class: "btn btn-danger w-100" %>
+  </div>
   <footer class="mt-4 text-center text-muted small">
     <div class="d-flex justify-content-center">
       <a href="#" class="mx-2">サイトマップ</a>

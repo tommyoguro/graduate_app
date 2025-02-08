@@ -12,27 +12,20 @@ class Users::SessionsController < Devise::SessionsController
      user = User.find_or_create_by!(email: 'guest@example.com') do |user|
        user.password = SecureRandom.urlsafe_base64
        user.name = "ゲストユーザー"
-       user.name_kana = "ゲスト"
-       user.company_name = "ゲスト会社"
-       user.division_name = "ゲスト部門"
-   end
+     end
     sign_in user
     redirect_to menu_path, notice: "ゲストユーザーとしてログインしました。"
    end
 
   def admin_guest_sign_in
-    admin = User.find_or_create_by!(email: 'admin_guest@example.com') do |user|
+    user = User.find_or_create_by!(email: 'admin_guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲスト管理者"
-      user.name_kana = "ゲスト管理"
-      user.company_name = "管理会社"
-      user.division_name = "管理部門"
       user.admin = true # 管理者フラグを true に設定
     end
-    sign_in admin
+    sign_in user
     redirect_to admin_users_path, notice: "ゲスト管理者としてログインしました。"
   end
-end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
