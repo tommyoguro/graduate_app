@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class UsersController < ApplicationController
   before_action :authenticate_user!  # 未ログインユーザーをログインページへ
   before_action :require_admin       # 管理者以外アクセス不可
 
