@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  
   # Devise のルート
   devise_for :users, controllers: { 
     registrations: 'users/registrations',
@@ -69,12 +69,16 @@ Rails.application.routes.draw do
   match "/404", to: "errors#not_found", via: :all
   match "/500", to: "errors#internal_server_error", via: :all
  
-  # **キャッチオールルートを追加**
-  match "*path", to: "errors#not_found", via: :all
-
   # ゲストログイン機能
   devise_scope :user do
    post '/users/guest_sign_in', to: 'users/sessions#guest_sign_in', as: :users_guest_sign_in
    post '/users/admin_guest_sign_in', to: 'users/sessions#admin_guest_sign_in', as: :users_admin_guest_sign_in
   end
+ 
+  # 🔹 お問い合わせページのルートを追加
+  get "/contact", to: "contacts#new", as: "contact"
+  post "/contact", to: "contacts#create"
+
+# **キャッチオールルートを追加**
+match "*path", to: "errors#not_found", via: :all
 end 

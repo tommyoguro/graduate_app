@@ -22,20 +22,8 @@
     <main class="container mt-4">
       <%= yield %> <!-- 各ビューのコンテンツがここに挿入される -->
     </main>
-
-    <!-- ✅ フッター -->
-    <footer class="mt-5 text-center bg-dark text-white py-3">
-      <div class="container">
-        <div class="d-flex justify-content-center">
-          <p class="mb-0">
-            <a href="#">サイトマップ</a> | 
-            <a href="#">ご利用にあたって</a> | 
-            <a href="#">個人情報保護方針</a>
-          </p>
-        </div>
-        <p class="mb-0">©2022 NISSAN</p>
-      </div>
-    </footer>
+ 
+     <!-- ✅ フッターの読み込み -->
+     <%= render "layouts/footer" %> 
   </body>
-  </html>
-  
+</html>

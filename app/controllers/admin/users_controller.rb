@@ -1,5 +1,7 @@
 class Admin::UsersController < Admin::BaseController
   before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!  # 未ログインユーザーはログイン画面へリダイレクト
+  before_action :require_admin       # 管理者以外はアクセス不可
 
   def index
     @users = User.all.order(:id)
@@ -34,5 +36,11 @@ class Admin::UsersController < Admin::BaseController
   def user_params
     params.require(:user).permit(:name, :email, :is_admin)
   end
-end
+
+  def require_admin
+  　unless current_user.admin?
+      flash[:alert] = "管理者権限が必要です。"
+      redirect_to root_path # 管理者以外はトップページにリダイレクト
+    end
+  end
 
