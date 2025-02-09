@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:guest_login, :admin_guest_sign_in]
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   # Deviseのマッピングを正しく認識するために追加
