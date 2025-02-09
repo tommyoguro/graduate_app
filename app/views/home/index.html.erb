@@ -1,18 +1,22 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-
-<div class="container d-flex flex-column align-items-center justify-content-center vh-100">
-  <div class="card p-4 shadow-lg" style="max-width: 400px; width: 100%;">
-    <div class="text-center mb-3">
-      <%= image_tag("nissan_logo.png", alt: "会社ロゴ", class: "img-fluid", style: "max-width: 100px;") %>     
-    </div>
-    <h2 class="text-center fw-bold">日産トレーディング株式会社</h2>
-    <h3 class="text-center">化学品・エネルギーグループ<br>B to B Matching サイト</h3>
-    <h3 class="text-center small">このサイトはグローバル B to B ビジネスに特化した売り手と買い手を繋ぐマッチングサービスです。</h3>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow-lg p-4 bg-light rounded-3 text-center" style="max-width: 500px;">
+    <img src="<%= asset_path('nissan_logo.png') %>" alt="Nissan Logo" class="mb-3" style="width: 80px;">
     
-    <h3 class="text-center fw-bold">B-TRADE</h3>
+    <h1 class="fw-bold fs-4">日産トレーディング株式会社</h1>
+    <h2 class="fw-semibold fs-5 text-secondary">化学品・エネルギーグループ</h2>
+    <h3 class="fw-bold fs-5">B to B Matching サイト</h3>
 
+    <p class="text-muted small">
+      このサイトはグローバル B to B ビジネスに特化した<br>
+      売り手と買い手を繋ぐマッチングサービスです。
+    </p>
 
-<%= button_to "ログイン/新規アカウント設定ページ", new_user_session_path, method: :get, class: "btn btn-primary" %>
+    <h3 class="fw-bold text-primary">B-TRADE</h3>
+
+    <a href="<%= new_user_session_path %>" class="btn btn-primary btn-lg shadow-sm w-100 mt-3">
+      ログイン / 新規アカウント設定ページ
+    </a>
+  </div>
+</div>
 
 
