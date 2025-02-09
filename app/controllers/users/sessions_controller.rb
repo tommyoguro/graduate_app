@@ -1,37 +1,36 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  protected 
+  # before_action :configure_sign_in_params, only: [:create]
+  # skip_before_action :authenticate_user!, only: [:new]
+  skip_before_action :require_no_authentication, only: [:new, :create]
 
-   #ログアウト後はログイン画面 (`users/sessions/new.html.erb`) に遷移
-   def after_sign_out_path_for(resource_or_scope)
+  #ログイン後のページ遷移 (`あとで書いといてください`) に遷移
+  def after_sign_out_path_for(resource_or_scope)
+    menu_path
+  end
+
+  #ログアウト後はログイン画面 (`users/sessions/new.html.erb`) に遷移
+  def after_sign_out_path_for(resource_or_scope)
     new_user_session_path
   end
- 
-   def guest_sign_in
-     user = User.find_or_create_by!(email: 'guest@example.com') do |user|
-       user.password = SecureRandom.urlsafe_base64
-       user.name = "ゲストユーザー"
-     end
+
+  def guest_sign_in
+    user = User.guest_find_or_create
     sign_in user
     redirect_to menu_path, notice: "ゲストユーザーとしてログインしました。"
-   end
+  end
 
   def admin_guest_sign_in
-    user = User.find_or_create_by!(email: 'admin_guest@example.com') do |user|
-      user.password = SecureRandom.urlsafe_base64
-      user.name = "ゲスト管理者"
-      user.is_admin = true # is_adminに変更
-    end
-    sign_in user
-    redirect_to admin_users_path, notice: "ゲスト管理者としてログインしました。"    
+    admin_user = User.guest_admin_find_or_create
+    sign_in admin_user
+    redirect_to menu_path, notice: "ゲスト管理者としてログインしました。"
   end
-  # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  #def new
+     #super
+  #end
 
   # POST /resource/sign_in
   # def create

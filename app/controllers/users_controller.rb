@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   def require_admin
     unless current_user&.admin?
       flash[:alert] = "管理者権限が必要です。"
-      redirect_to root_path
+      redirect_to new_user_session_path
     end
   end
 

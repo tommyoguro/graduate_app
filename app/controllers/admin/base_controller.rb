@@ -2,14 +2,13 @@
 class Admin::BaseController < ApplicationController
     before_action :authenticate_user!
     before_action :require_admin
-  
+
     private
-  
+
     def authenticate_admin!
       unless current_user&.is_admin?
         flash[:alert] = "管理者のみアクセス可能です。"
-        redirect_to root_path
+        redirect_to new_user_session_path
       end
     end
   end
-  

@@ -40,7 +40,6 @@ class Admin::UsersController < Admin::BaseController
   def require_admin
   　unless current_user.admin?
       flash[:alert] = "管理者権限が必要です。"
-      redirect_to root_path # 管理者以外はトップページにリダイレクト
+      redirect_to new_user_session_path # 管理者以外はトップページにリダイレクト
     end
   end
-
