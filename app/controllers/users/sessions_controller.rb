@@ -21,7 +21,7 @@ class Users::SessionsController < Devise::SessionsController
     user = User.find_or_create_by!(email: 'admin_guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲスト管理者"
-      user.admin = true # 管理者フラグを true に設定
+      user.is_admin = true # is_adminに変更
     end
     sign_in user
     redirect_to admin_users_path, notice: "ゲスト管理者としてログインしました。"

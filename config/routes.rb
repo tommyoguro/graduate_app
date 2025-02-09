@@ -79,8 +79,6 @@ Rails.application.routes.draw do
   get "/contact", to: "contacts#new", as: "contact"
   post "/contact", to: "contacts#create"
 
-  post "/guest_login", to: "users/sessions#guest_login", as: :guest_login
-
-  # **キャッチオールルートを追加**
+    # **キャッチオールルートを追加**
   match "*path", to: "errors#not_found", via: :all
 end 
