@@ -25,6 +25,22 @@ class Users::SessionsController < Devise::SessionsController
     end
     sign_in user
     redirect_to admin_users_path, notice: "ゲスト管理者としてログインしました。"
+
+    def guest_login
+      user = User.find_by(email: "guest@example.com")
+  
+      unless user
+        user = User.create!(
+          name: "ゲストユーザー",
+          email: "guest@example.com",
+          password: SecureRandom.hex(10), # ランダムなパスワード
+          is_admin: false
+        )
+      end
+  
+      sign_in user
+      redirect_to menu_path, notice: "ゲストログインしました。"
+    end
   end
   # before_action :configure_sign_in_params, only: [:create]
 
