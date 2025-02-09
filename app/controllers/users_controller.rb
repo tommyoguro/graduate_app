@@ -28,6 +28,11 @@ class UsersController < ApplicationController
     redirect_to admin_users_path
   end
 
+  def profile
+    # マイページ
+    @user = User.find(params[:id]) # ユーザー情報を取得
+  end
+
   private
 
   def require_admin

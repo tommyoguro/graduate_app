@@ -30,10 +30,13 @@ Rails.application.routes.draw do
   get '/seller_offers', to: 'seller_offers#index', as: 'seller_offers'
 
   # ユーザープロフィールページ
-  resources :users, only: [:index, :show]
-  get '/users/:id/profile', to: 'users#profile', as: 'user_profile'
-
-  # タスク管理ページ
+  resources :users, only: [:index, :show] do
+    member do
+      get :profile
+    end
+  end 
+  
+    # タスク管理ページ
   resources :tasks
 
   # ダッシュボード
