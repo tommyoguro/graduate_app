@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     # root to: "users/sessions#new"
     # get "/users/sign_out", to: "devise/sessions#destroy", as: :logout
     # get "/users/sign_out", to: redirect("/users/sign_in") # 明示的にログインページへリダイレクト
-    delete "/users/sign_out", to: "users/sessions#destroy"
+    #delete "/users/sign_out", to: "users/sessions#destroy" コメントアウト
+    delete 'sign_out', to: 'devise/sessions#destroy'
     post '/users/guest_sign_in', to: 'users/sessions#guest_sign_in'
     post '/users/admin_guest_sign_in', to: 'users/sessions#admin_guest_sign_in'
     #get '/registration_complete', to: 'users/registrations#complete', as: 'registration_complete'
