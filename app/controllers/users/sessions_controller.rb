@@ -22,16 +22,18 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def admin_guest_sign_in
-  user = User.find_or_create_by!(email: "admin_guest@example.com") do |user|
+   user = User.find_or_create_by!(email: "admin_guest@example.com") do |user|
     user.password = SecureRandom.urlsafe_base64
     user.name = "管理者ゲスト"
     user.name_kana = "カンリシャゲスト" # ← NULL にならないように追加
     user.company_name = "ゲスト会社" # 必要なら追加
     user.division_name = "ゲスト部門" # 必要なら追加
     user.is_admin = true
+   end
+
+   sign_in user
+   redirect_to root_path, notice: "管理者ゲストとしてログインしました。"
   end
-  sign_in user
-  redirect_to root_path, notice: "管理者ゲストとしてログインしました。"
   
   #def admin_guest_sign_in
     #admin_user = User.admin_guest_find_or_create
