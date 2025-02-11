@@ -22,8 +22,8 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def admin_guest_sign_in
-    admin_user = User.guest_admin_find_or_create
-    sign_in admin_user
+    admin_user = User.admin_guest_find_or_create
+    sign_in user
     redirect_to menu_path, notice: "ゲスト管理者としてログインしました。"
   end
 
