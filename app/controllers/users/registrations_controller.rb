@@ -2,6 +2,7 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
+  skip_before_action :require_no_authentication, only: [:new, :create] # ← 追加
 
   #登録完了画面用のアクション
   def complete #追加

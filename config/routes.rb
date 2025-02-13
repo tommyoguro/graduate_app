@@ -17,11 +17,11 @@ Rails.application.routes.draw do
     delete 'sign_out', to: 'devise/sessions#destroy'
     post '/users/guest_sign_in', to: 'users/sessions#guest_sign_in'
     post '/users/admin_guest_sign_in', to: 'users/sessions#admin_guest_sign_in'
-    #get '/registration_complete', to: 'users/registrations#complete', as: 'registration_complete'
+    get '/registration_complete', to: 'users/registrations#complete', as: 'registration_complete'
     get '/users/sign_in', to: 'users/sessions#new'
-   end
-
-  # authenticated :user do
+    end
+    
+    # authenticated :user do
   #   root to: "menu#index", as: :authenticated_root
   # end
 
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get '/menu', to: 'menu#index', as: 'menu'
   get '/buyer_requests', to: 'buyer_requests#index', as: 'buyer_requests'
   get '/seller_offers', to: 'seller_offers#index', as: 'seller_offers'
+  get 'contact/thank_you', to: 'contacts#thank_you'
 
   # ユーザープロフィールページ
   resources :users, only: [:index, :show] do

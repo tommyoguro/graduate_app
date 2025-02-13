@@ -1,38 +1,39 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-  <% if user_signed_in? %>
-    <%= link_to "【B-TRADE MENU画面】", menu_path, class: "navbar-brand" %>
-  <% else %>
-   <%= link_to "【B-TRADE MENU画面】", new_user_session_path, class: "navbar-brand" %>
-  <% end %>
+    <% if user_signed_in? %>
+      <%= link_to "【B-TRADE MENU画面】", menu_path, class: "navbar-brand" %>
+    <% else %>
+      <%= link_to "【B-TRADE MENU画面】", new_user_session_path, class: "navbar-brand" %>
+    <% end %>
 
-  　<!-- 🔹 ナビゲーションメニュー -->
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ms-auto">
-      <li class="nav-item">
-        <%= link_to "お問い合わせ", contact_path, class: "nav-link" %>
-      </li>
-
+    <!-- 🔹 ナビゲーションメニュー -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <%= link_to "お問い合わせ", contact_path, class: "nav-link" %>
+        </li>
+
         <% if user_signed_in? %>
+          <!-- 🔹 管理者のとき、管理者メニューを表示 -->
           <% if current_user.is_admin? %>
             <li class="nav-item">
-              <%= link_to "管理者ページ", admin_users_path, class: "nav-link btn btn-danger text-white" %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "マイページ", profile_user_path(current_user), class: "btn btn-primary" %>
+              <%= link_to "管理者ページ", admin_dashboard_path, class: "nav-link btn btn-danger text-white" %>
             </li>
           <% end %>
-          <li class="nav-item">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
-          </li>
+
+          <!-- 🔹 home#index または users/sessions#new のときはログアウトボタンを非表示 -->
+          <% unless (controller_name == "home" && action_name == "index") || (controller_name == "sessions" && action_name == "new") %>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-secondary ms-2" %>
+            </li>
+          <% end %>
+          
         <% else %>
+          <!-- 🔹 未ログイン時のメニュー -->
           <li class="nav-item">
             <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
           </li>
@@ -44,4 +45,3 @@
     </div>
   </div>
 </nav>
-
