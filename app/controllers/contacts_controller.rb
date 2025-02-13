@@ -7,15 +7,16 @@ class ContactsController < ApplicationController
 
   def create
     @contact = Contact.new(contact_params)
-  if @contact.save
-    redirect_to contact_thank_you_path, notice: "お問い合わせありがとうございました。"
-  else
-    render :new
+    if @contact.save
+      redirect_to contact_thank_you_path, notice: "お問い合わせありがとうございました。"
+    else
+      render :new
+    end
   end
-end
 
-private
+  private
 
-def contact_params
-  params.require(:contact).permit(:name, :email, :message)
+  def contact_params
+    params.require(:contact).permit(:name, :email, :message)
+  end
 end
