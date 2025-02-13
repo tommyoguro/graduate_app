@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get '/menu', to: 'menu#index', as: 'menu'
   get '/buyer_requests', to: 'buyer_requests#index', as: 'buyer_requests'
   get '/seller_offers', to: 'seller_offers#index', as: 'seller_offers'
-  get 'contact/thank_you', to: 'contacts#thank_you'
+  get 'contacts/thank_you', to: 'contacts#thank_you'
 
   # ユーザープロフィールページ
   resources :users, only: [:index, :show] do

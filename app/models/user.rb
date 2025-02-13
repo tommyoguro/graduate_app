@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }
 
   def admin?
-   self.is_admin
+    self.is_admin
   end
 
   def self.guest_find_or_create

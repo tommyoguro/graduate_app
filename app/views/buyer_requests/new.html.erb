@@ -1,22 +1,22 @@
 <%= form_with model: @buyer_request, url: buyer_requests_path, local: true do |f| %>
     <div class="mb-3">
       <%= f.label :product_name, "商品名" %>
-      <%= f.text_field :product_name, class: "form-control", required: true %>
+      <%= f.text_field :product_name, class: "form-control", required: true, placeholder:"商品名を入力して下さい" %>
     </div>
   
     <div class="mb-3">
       <%= f.label :quantity, "数量" %>
-      <%= f.number_field :quantity, class: "form-control", required: true %>
+      <%= f.number_field :quantity, class: "form-control", required: true, placeholder:"数量を入力して下さい" %>
     </div>
   
     <div class="mb-3">
       <%= f.label :delivery_address, "納入先" %>
-      <%= f.text_field :delivery_address, class: "form-control", required: true %>
+      <%= f.text_field :delivery_address, class: "form-control", required: true, placeholder:"納入先を入力して下さい" %>
     </div>
   
     <div class="mb-3">
       <%= f.label :delivery_date, "希望納期" %>
-      <%= f.date_field :delivery_date, class: "form-control", required: true %>
+      <%= f.date_field :delivery_date, class: "form-control", required: true,placeholder:"希望納期を入力して下さい" %>
     </div>
   
     <%= f.submit "送信", class: "btn btn-primary" %>
