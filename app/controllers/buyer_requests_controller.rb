@@ -10,7 +10,7 @@ class BuyerRequestsController < ApplicationController
   end
 
   def create
-    @buyer_request = BuyerRequest.new(buyer_request_params)
+    @buyer_request = current_user.buyer_requests.build(buyer_request_params) # user_id を関連付ける
     if @buyer_request.save
       redirect_to confirm_buyer_request_path(@buyer_request)
     else

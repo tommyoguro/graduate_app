@@ -1,6 +1,5 @@
 <!-- バリデーションエラーメッセージの表示 -->
 <%= render "shared/error_messages", resource: @buyer_request if @buyer_request.present? %>
-#<%= render "shared/error_messages", resource: @buyer_request %>
 
 <% if @user.present? && @user.errors.any? %>
  <div class="alert alert-danger">
@@ -18,7 +17,8 @@
     <div class="mb-3">
       <%= f.label :product_name, "商品名" %>
       <%= f.text_field :product_name, class: "form-control", required: true, placeholder:"商品名を入力して下さい" %>
-      <% if @buyer_request.errors[:product_name].any? %>
+      <% if @buyer_request.present? && @buyer_request.errors[:product_name].any? %> 
+      #% if @buyer_request.errors[:product_name].any? %>
       <div class="text-danger"><%= @buyer_request.errors.full_messages_for(:product_name).join(", ") %></div>
     <% end %>
     </div>
