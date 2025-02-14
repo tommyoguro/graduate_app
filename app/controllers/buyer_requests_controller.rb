@@ -10,12 +10,12 @@ class BuyerRequestsController < ApplicationController
   end
 
   def create
-    @buyer_request = current_user.buyer_requests.build(buyer_request_params) # user_id を関連付ける
+    @buyer_request = BuyerRequest.new(buyer_request_params)
     if @buyer_request.save
       redirect_to confirm_buyer_request_path(@buyer_request)
     else
-     puts @buyer_request.errors.full_messages # デバッグ用
-     render :new, status: :unprocessable_entity # ← これを追加
+      puts @buyer_request.errors.full_messages # デバッグ用
+      render :new, status: :unprocessable_entity
     end
   end
 
