@@ -6,6 +6,7 @@ class BuyerRequestsController < ApplicationController
 
   def new
     @buyer_request = BuyerRequest.new
+    @user = current_user # Devise を使っている場合
   end
 
   def create
