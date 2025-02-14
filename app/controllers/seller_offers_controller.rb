@@ -18,6 +18,7 @@ class SellerOffersController < ApplicationController
       # 成功した場合は見積回答番号を表示する画面にリダイレクト
       redirect_to seller_offer_complete_path(@seller_offer), notice: '見積回答が送信されました。'
     else
+      puts @seller_offer.errors.full_messages # ここでエラーをログ出力
       # 失敗した場合は再度入力画面を表示
       render :new, status: :unprocessable_entity
     end

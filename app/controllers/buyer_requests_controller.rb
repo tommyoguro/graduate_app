@@ -13,7 +13,8 @@ class BuyerRequestsController < ApplicationController
     if @buyer_request.save
       redirect_to confirm_buyer_request_path(@buyer_request)
     else
-      render :new
+     puts @buyer_request.errors.full_messages # デバッグ用
+     render :new, status: :unprocessable_entity # ← これを追加
     end
   end
 

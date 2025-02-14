@@ -1,22 +1,37 @@
+<!-- バリデーションエラーメッセージの表示 -->
+<%= render "shared/error_messages", resource: @buyer_request %>
+
 <%= form_with model: @buyer_request, url: buyer_requests_path, local: true do |f| %>
     <div class="mb-3">
       <%= f.label :product_name, "商品名" %>
       <%= f.text_field :product_name, class: "form-control", required: true, placeholder:"商品名を入力して下さい" %>
+      <% if @buyer_request.errors[:product_name].any? %>
+      <div class="text-danger"><%= @buyer_request.errors.full_messages_for(:product_name).join(", ") %></div>
+    <% end %>
     </div>
   
     <div class="mb-3">
       <%= f.label :quantity, "数量" %>
       <%= f.number_field :quantity, class: "form-control", required: true, placeholder:"数量を入力して下さい" %>
+      <% if @buyer_request.errors[:quantity].any? %>
+      <div class="text-danger"><%= @buyer_request.errors.full_messages_for(:quantity).join(", ") %></div>
+    <% end %>
     </div>
   
     <div class="mb-3">
       <%= f.label :delivery_address, "納入先" %>
       <%= f.text_field :delivery_address, class: "form-control", required: true, placeholder:"納入先を入力して下さい" %>
+      <% if @buyer_request.errors[:delivery_address].any? %>
+      <div class="text-danger"><%= @buyer_request.errors.full_messages_for(:delivery_address).join(", ") %></div>
+    <% end %>
     </div>
   
     <div class="mb-3">
       <%= f.label :delivery_date, "希望納期" %>
       <%= f.date_field :delivery_date, class: "form-control", required: true,placeholder:"希望納期を入力して下さい" %>
+      <% if @buyer_request.errors[:delivery_date].any? %>
+      <div class="text-danger"><%= @buyer_request.errors.full_messages_for(:delivery_date).join(", ") %></div>
+    <% end %>
     </div>
   
     <%= f.submit "送信", class: "btn btn-primary" %>

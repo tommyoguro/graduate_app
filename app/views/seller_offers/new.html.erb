@@ -3,6 +3,9 @@
 
   <p>見積依頼内容を以下に記載し、送信ボタンを押してください。</p>
 
+  <!-- バリデーションエラーメッセージの表示 -->
+  <%= render "shared/error_messages", resource: @seller_offer %>
+
    <%= form_with model: [@buyer_request, @seller_offer], url: buyer_request_seller_offers_path(@buyer_request), local: true do |f| %>
     <%= f.hidden_field :buyer_request_id, value: @buyer_request.id %>  
     <div class="mb-3">

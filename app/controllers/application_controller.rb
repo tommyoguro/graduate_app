@@ -11,7 +11,12 @@ class ApplicationController < ActionController::Base
   #  new_user_session_path # ログアウト後にログインページへ遷移
   # end
 
-  protected
+  private
+
+  def debug_current_user
+    Rails.logger.debug "current_user: #{current_user&.inspect}"
+  end
+
   def after_sign_in_path_for(resource)
     menu_path # ログイン後の遷移先を変更
   end
