@@ -19,7 +19,7 @@
 
         <% if user_signed_in? %>
           <!-- 管理者のとき、管理者メニューを表示 -->
-          <% if current_user.is_admin? %>
+          <% if current_user.is_admin %>
             <li class="nav-item">
               <%= link_to "管理者ページ", admin_dashboard_path, class: "nav-link btn btn-danger text-white" %>
             </li>
