@@ -22,9 +22,13 @@ User.create!(
     { email: "user12@example.com", password: "password", name: "鈴木 花子", name_kana: "スズキ ハナコ", company_name: "XYZ株式会社", division_name: "マーケティング部", is_deleted: false, is_admin: false },
     { email: "user13@example.com", password: "password", name: "佐藤 次郎", name_kana: "サトウ ジロウ", company_name: "DEF工業", division_name: "技術部", is_deleted: false, is_admin: false },
     { email: "admin1@example.com", password: "password", name: "管理者1", name_kana: "カンリシャイチ", company_name: "管理会社1", division_name: "システム管理部", is_deleted: false, is_admin: true },
-    { email: "guest1@example.com", password: "password", name: "ゲストユーザー1", name_kana: "ゲストイチ", company_name: "ゲスト会社1", division_name: "ゲスト部", is_deleted: false, is_admin: false }
+    { email: "guest1@example.com", password: "password", name: "ゲストユーザー1", name_kana: "ゲストイチ", company_name: "ゲスト会社1", division_name: "ゲスト部", is_deleted: false, is_admin: false },
+    { email: "test@example.com", password: "password", name: "テストユーザー", name_kana: "テストユーザー", company_name: "テスト会社", division_name: "テスト部", is_deleted: false, is_admin: false }
   ]
 )
+
+
+
 
 # 見積依頼（BuyerRequest）のシードデータ
 buyer_requests = BuyerRequest.create!(
