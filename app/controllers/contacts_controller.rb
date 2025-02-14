@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
     if @contact.save
       redirect_to contacts_thank_you_path, notice: "お問い合わせありがとうございました。"
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
