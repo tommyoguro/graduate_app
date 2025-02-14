@@ -17,9 +17,9 @@
           <%= link_to "お問い合わせ", contact_path, class: "nav-link" %>
         </li>
 
-        <% if user_signed_in? %>
-        <!-- 🔹 デバッグ出力 -->
-          <%= Rails.logger.debug "current_user: #{current_user.inspect}" %>
+        #<% if user_signed_in? %>
+        #<!-- 🔹 デバッグ出力 -->
+          #<%= Rails.logger.debug "current_user: #{current_user.inspect}" %>
 
           <!-- 管理者のとき、管理者メニューを表示 -->
           <% if current_user&.is_admin %>
