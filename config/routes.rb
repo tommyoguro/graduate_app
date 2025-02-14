@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root to: "home#index" #ホームページへのルート設定
+  get 'menu/index', to: 'menu#index', as: 'menu_index' # メニュー画面のルート
+  post 'users/admin_guest_login', to: 'sessions#admin_guest_login'
 
   # Devise のルート
   devise_for :users, controllers: {

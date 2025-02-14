@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    menu_path # ログイン後の遷移先を変更
+    menu_index_path # ログイン後の遷移先を変更
   end
 
   def configure_permitted_parameters

@@ -4,6 +4,7 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   # skip_before_action :authenticate_user!, only: [:new]
   skip_before_action :require_no_authentication, only: [:new, :create]
+  skip_before_action :verify_authenticity_token, only: [:create]
 
   #ログイン後のページ遷移 (`あとで書いといてください`) に遷移
   def after_sign_out_path_for(resource_or_scope)
@@ -32,8 +33,11 @@ class Users::SessionsController < Devise::SessionsController
    end
 
    sign_in user
-   redirect_to root_path, notice: "管理者ゲストとしてログインしました。"
+   redirect_to menu_index_path, notice: "管理者ゲストとしてログインしました。"
   end
+
+  
+
   
   #def admin_guest_sign_in
     #admin_user = User.admin_guest_find_or_create
