@@ -1,16 +1,19 @@
   User.find_or_create_by!(email: 'guest@example.com') do |user|
     user.password = SecureRandom.urlsafe_base64
     user.name = "ゲストユーザー"
+    user.name_kana = "ゲストユーザー" # ← 追加
   end
   
   User.find_or_create_by!(email: 'admin_guest@example.com') do |user|
     user.password = SecureRandom.urlsafe_base64
     user.name = "ゲスト管理者"
+    user.name_kana = "ゲストカンリシャ" # ← 追加
     user.admin = true
   end
 
   User.find_or_create_by!(email: "test@example.com") do |user|
     user.name = "Test User"
+    user.name_kana = "テストユーザー" # ← 追加
     user.password = "password"
     user.password_confirmation = "password"
   end
@@ -18,9 +21,9 @@
   # ユーザーのシードデータ
 User.create!(
   [
-    { email: "user11@example.com", password: "password", name: "田中 太郎", name_kana: "タナカ タロウ", company_name: "ABC商事", division_name: "営業部", is_deleted: false, is_admin: false },
-    { email: "user12@example.com", password: "password", name: "鈴木 花子", name_kana: "スズキ ハナコ", company_name: "XYZ株式会社", division_name: "マーケティング部", is_deleted: false, is_admin: false },
-    { email: "user13@example.com", password: "password", name: "佐藤 次郎", name_kana: "サトウ ジロウ", company_name: "DEF工業", division_name: "技術部", is_deleted: false, is_admin: false },
+    { email: "user11@example.com", password: "password", name: "田中 太郎", name_kana: "タナカタロウ", company_name: "ABC商事", division_name: "営業部", is_deleted: false, is_admin: false },
+    { email: "user12@example.com", password: "password", name: "鈴木 花子", name_kana: "スズキハナコ", company_name: "XYZ株式会社", division_name: "マーケティング部", is_deleted: false, is_admin: false },
+    { email: "user13@example.com", password: "password", name: "佐藤 次郎", name_kana: "サトウジロウ", company_name: "DEF工業", division_name: "技術部", is_deleted: false, is_admin: false },
     { email: "admin1@example.com", password: "password", name: "管理者1", name_kana: "カンリシャイチ", company_name: "管理会社1", division_name: "システム管理部", is_deleted: false, is_admin: true },
     { email: "guest1@example.com", password: "password", name: "ゲストユーザー1", name_kana: "ゲストイチ", company_name: "ゲスト会社1", division_name: "ゲスト部", is_deleted: false, is_admin: false },
     { email: "test@example.com", password: "password", name: "テストユーザー", name_kana: "テストユーザー", company_name: "テスト会社", division_name: "テスト部", is_deleted: false, is_admin: false }
