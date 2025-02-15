@@ -2,18 +2,24 @@
     user.password = SecureRandom.urlsafe_base64
     user.name = "ゲストユーザー"
     user.name_kana = "ゲストユーザー" # ← 追加
+    user.company_name = "ゲスト会社"  # ← 追加
+    user.division_name = "ゲスト部"    # ← 追加
   end
   
   User.find_or_create_by!(email: 'admin_guest@example.com') do |user|
     user.password = SecureRandom.urlsafe_base64
     user.name = "ゲスト管理者"
     user.name_kana = "ゲストカンリシャ" # ← 追加
+    user.company_name = "ゲスト管理会社"  # ← 追加
+    user.division_name = "ゲスト管理部"    # ← 追加
     user.admin = true
   end
 
   User.find_or_create_by!(email: "test@example.com") do |user|
     user.name = "Test User"
     user.name_kana = "テストユーザー" # ← 追加
+    user.company_name = "テスト会社"  # ← 追加
+    user.division_name = "テスト部"    # ← 追加
     user.password = "password"
     user.password_confirmation = "password"
   end
