@@ -4,6 +4,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   skip_before_action :require_no_authentication, only: [:new, :create] # ← 追加
 
+  def new
+    self.resource = User.new
+    super
+  end
+
+  def create
+    self.resource = User.new(sign_up_params)
+    if resource.save
+      redirect_to root_path, notice: "登録が完了しました"
+    else
+      render :new
+    end
+  end
+
   #登録完了画面用のアクション
   def complete #追加
   end #追加  
