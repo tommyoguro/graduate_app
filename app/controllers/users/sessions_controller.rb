@@ -17,7 +17,13 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def guest_sign_in
-    user = User.guest_find_or_create
+    user = User.find_or_create_by!(email: 'guest@example.com') do |user|
+     user.password = SecureRandom.urlsafe_base64
+     user.name = "ゲストユーザー"
+     user.name_kana = "ゲストユーザー"
+     user.company_name = "ゲスト会社"  # ← 追加
+     user.division_name = "ゲスト部"    # ← 追加
+  end 
     sign_in user
     redirect_to menu_path, notice: "ゲストユーザーとしてログインしました。"
   end
