@@ -11,10 +11,10 @@
     
     <h3 class="text-center fw-bold">ログイン</h3>
 
+     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "mt-3" }) do |f| %>
      <!-- 🔹 追加: エラーメッセージの表示 -->
-    <%= render "shared/error_messages", resource: resource %>
+     <%= render "shared/error_messages", form: f %>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "mt-3" }) do |f| %>
       <div class="form-group">
         <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "ユーザーID（メールアドレス）" %>
       </div>
