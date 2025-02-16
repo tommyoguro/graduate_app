@@ -18,6 +18,8 @@ module GraduateApp
     config.autoload_lib(ignore: %w[assets tasks])
 
     config.exceptions_app = self.routes
+    config.i18n.default_locale = :ja
+    config.time_zone = 'Tokyo'
 
     # Configuration for the application, engines, and railties goes here.
     #
