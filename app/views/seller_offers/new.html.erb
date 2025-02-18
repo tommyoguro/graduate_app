@@ -1,7 +1,6 @@
 <!-- バリデーションエラーメッセージの表示 -->
 <%= form_with model: @seller_offer, url: buyer_request_seller_offers_path(@buyer_request), local: true do |f| %>
-  <%= f.hidden_field :buyer_request_id, value: @buyer_request.id %>  
-  <%= render "shared/error_messages", form: f %>
+ <%= render "shared/error_messages", form: f %>
 
 <div class="container">
   <h2>見積回答 (オファー)</h2>

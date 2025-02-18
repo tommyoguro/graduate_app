@@ -1,5 +1,9 @@
-<% if form.object.errors.any? %>
-  <% form.object.errors.full_messages.each do |msg| %>
-    <div class='alert alert-danger'><%= msg %></div>
-  <% end %>
+<% if local_assigns[:form] && form.object.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% form.object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
