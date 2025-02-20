@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     post '/users/admin_guest_sign_in', to: 'users/sessions#admin_guest_sign_in'
     get '/registration_complete', to: 'users/registrations#complete', as: 'registration_complete'
     get '/users/sign_in', to: 'users/sessions#new'
+    get 'users/complete', to: 'users/registrations#complete', as: 'complete_users'
     end
     
     # authenticated :user do
