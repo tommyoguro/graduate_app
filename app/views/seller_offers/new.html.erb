@@ -33,14 +33,14 @@
     </div>
 
     <div class="mb-3">
-      <%= f.label :price, "見積価格 (円)" %>
-      <%= f.number_field :price, class: "form-control", required: true, placeholder: "金額を入力して下さい。"%>
-    </div>
+    <label class="form-label">見積価格 (円)</label>
+    <%= f.number_field :price, class: "form-control", required: true, placeholder: "金額を入力してください" %>
+  </div>
 
-    <div class="mb-3">
-      <%= f.label :delivery_date, "納期" %>
-      <%= f.date_field :delivery_date, class: "form-control", required: true, placeholder: "納期を入力して下さい。" %>
-    </div>
+  <div class="mb-3">
+    <label class="form-label">納期</label>
+    <%= f.date_field :delivery_date, class: "form-control", required: true, placeholder: "yyyy/mm/dd" %>
+  </div>
 
     <%= f.hidden_field :buyer_request_id, value: @buyer_request.id %>
 

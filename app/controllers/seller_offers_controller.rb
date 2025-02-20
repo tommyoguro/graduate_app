@@ -11,7 +11,8 @@ class SellerOffersController < ApplicationController
   end
 
   def create
-    @buyer_request = BuyerRequest.find(params[:buyer_request_id])
+    set_buyer_request
+    #@buyer_request = BuyerRequest.find(params[:buyer_request_id])
     @seller_offer = @buyer_request.seller_offers.build(seller_offer_params)
   
     if @seller_offer.save
