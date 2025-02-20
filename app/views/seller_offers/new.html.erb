@@ -2,48 +2,48 @@
 <%= form_with model: @seller_offer, url: buyer_request_seller_offers_path(@buyer_request), local: true do |f| %>
  <%= render "shared/error_messages", form: f %>
 
-<div class="container">
-  <h2>見積回答 (オファー)</h2>
+  <div class="container">
+    <h2>見積回答 (オファー)</h2>
 
-  <p>見積依頼内容を以下に記載し、送信ボタンを押してください。</p>
-   
-    <div class="mb-3">
-      <label class="form-label">見積依頼ID</label>
-      <input type="text" class="form-control" value="<%= @buyer_request.id %>" readonly>
+    <p>見積依頼内容を以下に記載し、送信ボタンを押してください。</p>
+    
+      <div class="mb-3">
+        <label class="form-label">見積依頼ID</label>
+        <input type="text" class="form-control" value="<%= @buyer_request.id %>" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">商品名</label>
+        <input type="text" class="form-control" value="<%= @buyer_request.product_name %>" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">数量</label>
+        <input type="text" class="form-control" value="<%= @buyer_request.quantity %>" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">納入先</label>
+        <input type="text" class="form-control" value="<%= @buyer_request.delivery_address %>" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">希望納期</label>
+        <input type="text" class="form-control" value="<%= @buyer_request.delivery_date %>" readonly>
+      </div>
+
+      <div class="mb-3">
+      <label class="form-label">見積価格 (円)</label>
+      <%= f.number_field :price, class: "form-control", placeholder: "金額を入力してください" %>
     </div>
 
     <div class="mb-3">
-      <label class="form-label">商品名</label>
-      <input type="text" class="form-control" value="<%= @buyer_request.product_name %>" readonly>
+      <label class="form-label">納期</label>
+      <%= f.date_field :delivery_date, class: "form-control", placeholder: "yyyy/mm/dd" %>
     </div>
 
-    <div class="mb-3">
-      <label class="form-label">数量</label>
-      <input type="text" class="form-control" value="<%= @buyer_request.quantity %>" readonly>
-    </div>
+      <%= f.hidden_field :buyer_request_id, value: @buyer_request.id %>
 
-    <div class="mb-3">
-      <label class="form-label">納入先</label>
-      <input type="text" class="form-control" value="<%= @buyer_request.delivery_address %>" readonly>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">希望納期</label>
-      <input type="text" class="form-control" value="<%= @buyer_request.delivery_date %>" readonly>
-    </div>
-
-    <div class="mb-3">
-    <label class="form-label">見積価格 (円)</label>
-    <%= f.number_field :price, class: "form-control", required: true, placeholder: "金額を入力してください" %>
+      <%= f.submit "送信", class: "btn btn-primary" %>
   </div>
-
-  <div class="mb-3">
-    <label class="form-label">納期</label>
-    <%= f.date_field :delivery_date, class: "form-control", required: true, placeholder: "yyyy/mm/dd" %>
-  </div>
-
-    <%= f.hidden_field :buyer_request_id, value: @buyer_request.id %>
-
-    <%= f.submit "送信", class: "btn btn-primary" %>
-  <% end %>
-</div>
+<% end %>
